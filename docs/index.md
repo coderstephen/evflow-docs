@@ -17,5 +17,5 @@ these docs.
 
 ## License
 All Evflow documentation is licensed under the Apache License, Version 2.0
-(Apache-2.0). See [the license file](https://github.com/evflow/docs/LICENSE.md)
+(Apache-2.0). See [the license file](https://github.com/evflow/docs/blob/master/LICENSE.md)
 for details.
