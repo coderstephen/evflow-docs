@@ -14,3 +14,8 @@ describe the architecture of the project before we move forward. Head over to
 the [Gitter chat room](https://gitter.im/evflow/evflow) to discuss the project
 and the [GitHub repository](https://github.com/evflow/docs) to make changes to
 these docs.
+
+## License
+All Evflow documentation is licensed under the Apache License, Version 2.0
+(Apache-2.0). See [the license file](https://github.com/evflow/docs/LICENSE.md)
+for details.
