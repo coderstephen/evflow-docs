@@ -3,4 +3,5 @@ site_description: Design and API documentation for the Evflow project.
 site_author: Evflow Project
 docs_dir: 'docs'
 repo_url: https ://github.com/evflow/docs
+theme: readthedocs
 site_favicon: favicon.ico
