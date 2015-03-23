@@ -2,6 +2,13 @@ site_name: Evflow Documentation
 site_description: Design and API documentation for the Evflow project.
 site_author: Evflow Project
 docs_dir: 'docs'
-repo_url: https ://github.com/evflow/docs
+repo_url: https://github.com/evflow/docs
+pages:
+- [index.md, Home]
+- [introduction/what-even-is.md, Introduction, 'What is Evflow?']
+- [introduction/why.md, Introduction, 'Why?']
+- [introduction/project-goals.md, Introduction, 'Project goals']
+- [design/event-loop.md, Design, 'The event loop']
+- [usage/logging.md, Usage, 'Logging']
 theme: readthedocs
 site_favicon: favicon.ico

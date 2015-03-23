@@ -9,7 +9,6 @@ pass in a logger object that implements `Psr\Log\LoggerInterface`. For example,
 we can use [Monolog](https://github.com/Seldaek/monolog) to write logs to
 standard output:
 
-
 ```
 use Evflow\Loop;
 use Monolog\Handler\StreamHandler;
