@@ -114,7 +114,7 @@ As we saw earlier, to actually have our callback functions get executed, we need
 \Evflow\Loop::run();
 ```
 
-This is commonly the last statement in a program. The `Loop` class offers a feature for the global loop called *autostarting* that does this step for you. If the global loop has been initialized, you must want to use it, so the `Loop` class automatically calls `run()` after the last statement in the entire program finishes. If you want to disable this feature and start the loop at a different time, just call the `disableAutoStart()` method:
+The `Loop` class offers a feature for the global loop called *autostarting* that does this step for you. If the global loop has been initialized, you must want to use it, so the `Loop` class automatically calls `run()` after the last statement in the entire program finishes. If you want to disable this feature and start the loop at a different time, just call the `disableAutoStart()` method:
 
 ```php
 \Evflow\Loop::disableAutoStart();
