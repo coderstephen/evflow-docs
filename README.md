@@ -1,7 +1,3 @@
----
-currentMenu: home
----
-
 # Welcome to the Evflow documentation!
 Evflow (/ˈɛvfloʊ/) is an open-source project with the goal of bringing powerful and extensible asynchronous programming features to vanilla PHP. It is taken from many lessons learned from other attempts at asynchronous programming in PHP and other languages as well. Much thanks is owed to the [ReactPHP](http://reactphp.org) team.
 
