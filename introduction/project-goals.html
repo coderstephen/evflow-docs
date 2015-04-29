@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>Evflow Documentation</title>
+
+        <link rel="stylesheet" href="http://evflow.github.io/docs/css/bootstrap.min.css">
+        <link rel="stylesheet" href="http://evflow.github.io/docs/css/font-awesome.min.css">
+        <link rel="stylesheet" href="http://evflow.github.io/docs/css/highlight.tomorrow-night.css">
+        <link rel="stylesheet" href="http://evflow.github.io/docs/css/main.css">
+    </head>
+    <body>
+
+        <header class="navbar navbar-default navbar-fixed-top">
+
+            <a class="navbar-brand" href="http://evflow.github.io/docs/">
+                Evflow Documentation
+                <small class="hidden-xs hidden-sm">
+                    Making extensible asynchronous programming in PHP a reality
+                </small>
+            </a>
+
+            
+        </header>
+
+        <main class="container-fluid">
+            <div class="row">
+
+                
+                    <nav id="sidebar" class="col-sm-3 col-lg-2" role="navigation">
+
+                                                    <p class="text-muted">
+                                Introduction
+                            </p>
+
+                            <ul class="nav nav-pills nav-stacked">
+                                                                    <li class="">
+                                        <a href="http://evflow.github.io/docs/introduction/what-even-is.html">
+                                            What is Evflow?
+                                        </a>
+                                    </li>
+                                                                    <li class="">
+                                        <a href="http://evflow.github.io/docs/introduction/why.html">
+                                            Why?
+                                        </a>
+                                    </li>
+                                                                    <li class="active">
+                                        <a href="http://evflow.github.io/docs/introduction/project-goals.html">
+                                            Project Goals
+                                        </a>
+                                    </li>
+                                                            </ul>
+                                                    <p class="text-muted">
+                                Concepts
+                            </p>
+
+                            <ul class="nav nav-pills nav-stacked">
+                                                                    <li class="">
+                                        <a href="http://evflow.github.io/docs/concepts/event-loop.html">
+                                            The Event Loop
+                                        </a>
+                                    </li>
+                                                                    <li class="">
+                                        <a href="http://evflow.github.io/docs/concepts/event-devices.html">
+                                            Event Devices
+                                        </a>
+                                    </li>
+                                                            </ul>
+                                                    <p class="text-muted">
+                                Usage
+                            </p>
+
+                            <ul class="nav nav-pills nav-stacked">
+                                                                    <li class="">
+                                        <a href="http://evflow.github.io/docs/usage/logging.html">
+                                            Logging
+                                        </a>
+                                    </li>
+                                                            </ul>
+                        
+                    </nav>
+
+                
+                <section class="col-sm-offset-3 col-lg-offset-2 col-sm-9 col-lg-10">
+                    <h1>Project goals</h1>
+<p>The purpose of the Evflow project is twofold: to experiment, discover and design a standard method for writing and running asynchronous PHP code, and to provide a solid, capable implementation thereof for general use.</p>
+<h1>The design</h1>
+<p>The design we are developing is fairly unique in the asynchronous world, and not without reason. We think there are some fundamental design considerations that affect the power and extensibility of an asynchronous environment that even popular, low-level libraries miss out on. Not that libraries such as <a href="http://libev.schmorp.de">libev</a> are bad, but in the PHP environment we think that there is a better way.</p>
+<h1>The implementation</h1>
+<p>Since the design is still a work in progress, you can imagine the implementation is as well. At its current state, the implementation is a long way off from being stable enough for a production-level application, but is still quite powerful and serves as a way to test the design in real code and feed the results back into the design.</p>
+<p>Unlike some libraries, the Evflow implementation is meant to be only an event library; it should do one thing, and one thing well. Relevant features could be added in the future beyond a basic event loop to make it more useful. Some things that should be or are being looked into are:</p>
+<ul>
+<li>Using generators to make creating arbitrary async functions simpler and more powerful
+<ul>
+<li>Many ideas could be borrowed from Luke Hoban's excellent <a href="http://github.com/lukehoban/ecmascript-asyncawait">Async Functions for ECMAScript</a> proposal.</li>
+<li>Nikita Popov already wrote <a href="http://nikic.github.io/2012/12/22/Cooperative-multitasking-using-coroutines-in-PHP.html">an awesome article</a> on using generators for multitasking. Many raw ideas should be borrowed from him.</li>
+</ul></li>
+<li>Loop classes that use <a href="http://libev.schmorp.de">libev</a>, <a href="https://github.com/joyent/libuv">libuv</a>, or <a href="http://libevent.org">libevent</a> as a back-end to implement event handling</li>
+<li>Synchronizing with event loops in other (forked) processes
+<ul>
+<li>Dealing with forks is easier with Kris Wallsmith's <a href="https://github.com/kriswallsmith/spork">Spork</a> library.</li>
+</ul></li>
+<li>Task workers using <a href="http://pthreads.org">pthreads</a></li>
+<li>POSIX process signals &amp; interrupts</li>
+<li><a href="http://wiki.dlang.org/Event_system">The many excellent ideas</a> the D language community has for their own language; some of which could be borrowed</li>
+</ul>
+                </section>
+
+            </div>
+        </main>
+
+        <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+        <script src="http://yandex.st/highlightjs/7.5/highlight.min.js"></script>
+
+        <script>
+            $(function() {
+                $("section>h1").wrap('<div class="page-header" />');
+                // Syntax highlighting
+                hljs.initHighlightingOnLoad();
+            });
+        </script>
+
+    </body>
+</html>

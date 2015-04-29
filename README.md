@@ -1,10 +1,71 @@
-# Welcome to the Evflow documentation!
-Evflow (/ˈɛvfloʊ/) is an open-source project with the goal of bringing powerful and extensible asynchronous programming features to vanilla PHP. It is taken from many lessons learned from other attempts at asynchronous programming in PHP and other languages as well. Much thanks is owed to the [ReactPHP](http://reactphp.org) team.
+---
+currentMenu: home
+---
+# Couscous Dark template
 
-Evflow is currently an experiment and not recommended for production-level projects.
+![](screenshot.png)
 
-# Documentation status
-If you can write documentation in a less humorous and more serious way than we can, we could use your help! This documentation is far from complete and we need to formally describe the architecture of the project before we move forward. Head over to the [Gitter chat room](https://gitter.im/evflow/evflow) to discuss the project and the [GitHub repository](https://github.com/evflow/docs) to make changes to these docs.
+## Usage
 
-# License
-All Evflow documentation is licensed under the Apache License, Version 2.0 (Apache-2.0). See [the license file](https://github.com/evflow/docs/blob/master/LICENSE.md) for details.
+To use the template, set it up in your `couscous.yml` configuration file:
+
+```yaml
+template:
+    url: https://github.com/CouscousPHP/Template-Dark
+```
+
+## Configuration
+
+Here are all the variables you can set in your `couscous.yml`:
+
+```yaml
+# Base URL of the published website
+baseUrl: http://username.github.io/project
+
+# Used to link to the GitHub project
+github:
+    user: myself
+    repo: my-project
+
+title: My project
+subTitle: This is a great project.
+
+# The left menu bar
+menu:
+    sections:
+        main:
+            name: Main documentation
+            items:
+                home:
+                    text: Home page
+                    # You can use relative urls
+                    relativeUrl: doc/faq.html
+                foo:
+                    text: Another link
+                    # Or absolute urls
+                    absoluteUrl: https://example.com
+        other:
+            name: Other topics
+            items:
+```
+
+Note that the menu items can also contain HTML:
+
+```yaml
+home:
+    text: "<i class=\"fa fa-github\"></i> Home page"
+    relativeUrl: doc/faq.html
+```
+
+## Menu
+
+To set the current menu item (i.e. highlighted menu item), set the `currentMenu`
+key in the Markdown files:
+
+```markdown
+---
+currentMenu: home
+---
+
+# Welcome
+```

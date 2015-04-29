@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>Evflow Documentation</title>
+
+        <link rel="stylesheet" href="http://evflow.github.io/docs/css/bootstrap.min.css">
+        <link rel="stylesheet" href="http://evflow.github.io/docs/css/font-awesome.min.css">
+        <link rel="stylesheet" href="http://evflow.github.io/docs/css/highlight.tomorrow-night.css">
+        <link rel="stylesheet" href="http://evflow.github.io/docs/css/main.css">
+    </head>
+    <body>
+
+        <header class="navbar navbar-default navbar-fixed-top">
+
+            <a class="navbar-brand" href="http://evflow.github.io/docs/">
+                Evflow Documentation
+                <small class="hidden-xs hidden-sm">
+                    Making extensible asynchronous programming in PHP a reality
+                </small>
+            </a>
+
+            
+        </header>
+
+        <main class="container-fluid">
+            <div class="row">
+
+                
+                    <nav id="sidebar" class="col-sm-3 col-lg-2" role="navigation">
+
+                                                    <p class="text-muted">
+                                Introduction
+                            </p>
+
+                            <ul class="nav nav-pills nav-stacked">
+                                                                    <li class="">
+                                        <a href="http://evflow.github.io/docs/introduction/what-even-is.html">
+                                            What is Evflow?
+                                        </a>
+                                    </li>
+                                                                    <li class="active">
+                                        <a href="http://evflow.github.io/docs/introduction/why.html">
+                                            Why?
+                                        </a>
+                                    </li>
+                                                                    <li class="">
+                                        <a href="http://evflow.github.io/docs/introduction/project-goals.html">
+                                            Project Goals
+                                        </a>
+                                    </li>
+                                                            </ul>
+                                                    <p class="text-muted">
+                                Concepts
+                            </p>
+
+                            <ul class="nav nav-pills nav-stacked">
+                                                                    <li class="">
+                                        <a href="http://evflow.github.io/docs/concepts/event-loop.html">
+                                            The Event Loop
+                                        </a>
+                                    </li>
+                                                                    <li class="">
+                                        <a href="http://evflow.github.io/docs/concepts/event-devices.html">
+                                            Event Devices
+                                        </a>
+                                    </li>
+                                                            </ul>
+                                                    <p class="text-muted">
+                                Usage
+                            </p>
+
+                            <ul class="nav nav-pills nav-stacked">
+                                                                    <li class="">
+                                        <a href="http://evflow.github.io/docs/usage/logging.html">
+                                            Logging
+                                        </a>
+                                    </li>
+                                                            </ul>
+                        
+                    </nav>
+
+                
+                <section class="col-sm-offset-3 col-lg-offset-2 col-sm-9 col-lg-10">
+                    <h1>Why?</h1>
+<p>Since the last few releases of PHP, all the elements for creating an asynchronous environment are there -- all that is needed is an event loop system and away we go. Evflow's goal is to not only define an interface for implementing asynchronous functionality, but to provide a robust implementation as well.</p>
+<h1>Why asynchronous programming?</h1>
+<p>Some Very Smart People have shown that asynchronous programming takes the best advantage of a system's resources in an efficient way. Asynchronous programming doesn't replace threaded or multi-process systems, but rather compliments them. It is a dynamic way of programming designed to minimize CPU time spent idling and instead use the full capabilities of a computer's hardware and a real-time operating systems' power.</p>
+<h1>Why PHP?</h1>
+<p>Why not PHP? Riddle me <em>that</em>.</p>
+                </section>
+
+            </div>
+        </main>
+
+        <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+        <script src="http://yandex.st/highlightjs/7.5/highlight.min.js"></script>
+
+        <script>
+            $(function() {
+                $("section>h1").wrap('<div class="page-header" />');
+                // Syntax highlighting
+                hljs.initHighlightingOnLoad();
+            });
+        </script>
+
+    </body>
+</html>

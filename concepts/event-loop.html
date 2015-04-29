@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>Evflow Documentation</title>
+
+        <link rel="stylesheet" href="http://evflow.github.io/docs/css/bootstrap.min.css">
+        <link rel="stylesheet" href="http://evflow.github.io/docs/css/font-awesome.min.css">
+        <link rel="stylesheet" href="http://evflow.github.io/docs/css/highlight.tomorrow-night.css">
+        <link rel="stylesheet" href="http://evflow.github.io/docs/css/main.css">
+    </head>
+    <body>
+
+        <header class="navbar navbar-default navbar-fixed-top">
+
+            <a class="navbar-brand" href="http://evflow.github.io/docs/">
+                Evflow Documentation
+                <small class="hidden-xs hidden-sm">
+                    Making extensible asynchronous programming in PHP a reality
+                </small>
+            </a>
+
+            
+        </header>
+
+        <main class="container-fluid">
+            <div class="row">
+
+                
+                    <nav id="sidebar" class="col-sm-3 col-lg-2" role="navigation">
+
+                                                    <p class="text-muted">
+                                Introduction
+                            </p>
+
+                            <ul class="nav nav-pills nav-stacked">
+                                                                    <li class="">
+                                        <a href="http://evflow.github.io/docs/introduction/what-even-is.html">
+                                            What is Evflow?
+                                        </a>
+                                    </li>
+                                                                    <li class="">
+                                        <a href="http://evflow.github.io/docs/introduction/why.html">
+                                            Why?
+                                        </a>
+                                    </li>
+                                                                    <li class="">
+                                        <a href="http://evflow.github.io/docs/introduction/project-goals.html">
+                                            Project Goals
+                                        </a>
+                                    </li>
+                                                            </ul>
+                                                    <p class="text-muted">
+                                Concepts
+                            </p>
+
+                            <ul class="nav nav-pills nav-stacked">
+                                                                    <li class="active">
+                                        <a href="http://evflow.github.io/docs/concepts/event-loop.html">
+                                            The Event Loop
+                                        </a>
+                                    </li>
+                                                                    <li class="">
+                                        <a href="http://evflow.github.io/docs/concepts/event-devices.html">
+                                            Event Devices
+                                        </a>
+                                    </li>
+                                                            </ul>
+                                                    <p class="text-muted">
+                                Usage
+                            </p>
+
+                            <ul class="nav nav-pills nav-stacked">
+                                                                    <li class="">
+                                        <a href="http://evflow.github.io/docs/usage/logging.html">
+                                            Logging
+                                        </a>
+                                    </li>
+                                                            </ul>
+                        
+                    </nav>
+
+                
+                <section class="col-sm-offset-3 col-lg-offset-2 col-sm-9 col-lg-10">
+                    <h1>Overview</h1>
+<p>The <em>event loop</em> is the core of Evflow and of any asynchronous application. Its the event loop's responsibility to control the execution flow of the application and keep track of event callbacks that need to be invoked.</p>
+<p>At its most basic level, the event loop is a scheduler for executing callback functions.</p>
+<h2>Conventional event loops</h2>
+<p>Evflow's event loop takes on a different architecture than the event loops found in most other asynchronous libraries. Typically, an event loop allows you to register events you would like to listen to with the event loop directly. When the event loop is run, it waits for incoming events by whatever means necessary and invokes a callback function when the event is triggered.</p>
+<p>For example, in an asynchronous web server, you would probably open a new server socket and register the socket with an event loop. You could then listen for incoming connections from a web browser asynchronously without blocking the main process.</p>
+<p>Similarly, if a certain web page request required making a database query, you could open up a connection to the database, send the query, and register the database connection with the event loop. You could then receive the query result asynchronously without blocking requests for other web pages in the meantime.</p>
+<h2>Evflow's view on event loops</h2>
+<p>Usually, this means the event loop must be hard-coded to be able to listen to as many kinds of events that you want to support. In Evflow, different types of events are abstracted and instead leaves it to the <a href="event-devices.html">event devices</a> to listen for specific types of events. This makes it easy to augment existing event loops with new functionality and create asynchronous code for completely new types of real-time events.</p>
+<h1>Using implementations</h1>
+<p>Depending on the application, different kinds of event loops may grant you improved performance or more useful features. Currently, Evflow only provides one event loop implementation, but more may be included in the future. All implementations should implement the <code>LoopInterface</code> interface so that using an event loop is implementation-independent.</p>
+<p>The default implementation in Evflow is <code>NativeLoop</code>, named after the fact that it is written in native PHP and does not depend on any PHP extensions. It implements <code>LoopInterface</code>, so we can use it like every other event loop. Let's look at an example of how to use it:</p>
+<pre><code class="language-php">use Evflow\NativeLoop;
+
+$loop = new NativeLoop();
+
+$loop-&gt;futureTick(function () {
+    echo "Hello, world!\n";
+});
+
+$loop-&gt;run();</code></pre>
+<p>The output of this code is pretty simple:</p>
+<pre><code>Hello, world!</code></pre>
+<p>What exactly is happening here? First, we create a new <em>event loop instance</em>. This object contains the event loop code and can be used for scheduling callbacks.</p>
+<p>Next, we use the <code>futureTick()</code> method to schedule an anonymous function to be asynchronously called later. But how does it work? The given function is added to <code>$loop</code>'s queue of functions to be called at some future time, and when the event loop starts running, it will call our function at the appropriate time. We will explore how it decides what time is appropriate a little later.</p>
+<p>Finally, we call the event loop's <code>run()</code> method to start the event loop. At this point the loop starts listening for events and executing callbacks. In this example we aren't listening for any events, so the only thing the event loop does is call our function we passed to <code>futureTick()</code> earlier. If we tweak our example a little, you can see the order of execution more clearly:</p>
+<pre><code class="language-php">use Evflow\NativeLoop;
+
+$loop = new NativeLoop();
+
+$loop-&gt;futureTick(function () {
+    echo "Hello from callback!\n";
+});
+
+echo "Hello synchronously!\n";
+$loop-&gt;run();</code></pre>
+<p>The output of this code is not what you might think:</p>
+<pre><code>Hello synchronously!
+Hello from callback!</code></pre>
+<p>In this example, the message &quot;Hello synchronously!&quot; is displayed first, despite appearing in our code after our anonymous function. This illustrates another concept to keep in mind: all asynchronous functions are called only while the event loop is running, specifically when <code>run()</code> is called. If you were to write code after the event loop is run, it would be executed only after all asynchronous callbacks have been called.</p>
+<h1>Instances and global state</h1>
+<p>As we have seen, event loops are self-contained objects that have no global scope. In order for the magical asynchronous apps that you've been hearing so much about to work, all components of a program need to share the same event loop. Doing so helps the event loop to make wise choices on when to schedule callbacks to be executed and when to listen for incoming events.</p>
+<p>Typically an application only needs one event loop per process or thread. Here we introduce the static <code>Loop</code> class, which manages an event loop instance that is globally accessible to a program. We call this event loop instance the <em>global loop</em>, which is typically the only loop most applications should use.</p>
+<h2>The <code>Loop</code> static class</h2>
+<p>The <code>Loop</code> class is a simple, but powerful, static class that introduces minimal global scope in exchange for looser coupling between asynchronous code and the event loop without adding unnecessary complexity. It offers us some useful features unique to the global loop, but at its core it is little more than a static holder for a regular event loop instance.</p>
+<p>Before we can use the global loop, it must be initialized. At this step an event loop instance is created and promoted to be the global loop:</p>
+<pre><code class="language-php">use Evflow\Loop;
+Loop::init();</code></pre>
+<p>By default, the global loop is an instance of <code>NativeLoop</code>. If we want to use a different event loop implementation, we can pass our own instance to the <code>init()</code> function and it will be promoted to the global loop. Any event loop implementing <code>LoopInterface</code> (<em>remember him?</em>) can be promoted to the global loop:</p>
+<pre><code class="language-php">use Evflow\Loop;
+use FooBar\EpicLoop;
+
+$loop = new EpicLoop(42);
+Loop::init($loop);</code></pre>
+<p>Once the global loop has been initialized, we can access it using the <code>instance()</code> static method:</p>
+<pre><code class="language-php">\Evflow\Loop::instance()-&gt;futureTick(function () {
+    echo "Howdy, boys.\n";
+});</code></pre>
+<p>The <code>Loop</code> class also provides a few static shortcut methods for methods common to the loop interface; these have the same name as their instance counterparts. For example, the above snippet can be shortened to:</p>
+<pre><code class="language-php">\Evflow\Loop::futureTick(function () {
+    echo "Howdy, boys.\n";
+});</code></pre>
+<p>The call will be delegated to the global loop instance appropriately.</p>
+<h2>Loop autostarting</h2>
+<p>As we saw earlier, to actually have our callback functions get executed, we need to run the event loop using the <code>run()</code> method. We can do that on the global loop as well:</p>
+<pre><code class="language-php">\Evflow\Loop::run();</code></pre>
+<p>The <code>Loop</code> class offers a feature for the global loop called <em>autostarting</em> that does this step for you. If the global loop has been initialized, you must want to use it, so the <code>Loop</code> class automatically calls <code>run()</code> after the last statement in the entire program finishes. If you want to disable this feature and start the loop at a different time, just call the <code>disableAutoStart()</code> method:</p>
+<pre><code class="language-php">\Evflow\Loop::disableAutoStart();</code></pre>
+<p>You will then have to call <code>run()</code> manually for the event loop to be executed.</p>
+                </section>
+
+            </div>
+        </main>
+
+        <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+        <script src="http://yandex.st/highlightjs/7.5/highlight.min.js"></script>
+
+        <script>
+            $(function() {
+                $("section>h1").wrap('<div class="page-header" />');
+                // Syntax highlighting
+                hljs.initHighlightingOnLoad();
+            });
+        </script>
+
+    </body>
+</html>

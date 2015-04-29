@@ -1,36 +1,27 @@
-title: Evflow Documentation
-subTitle: Making extensible asynchronous programming in PHP a reality
-baseUrl: http://evflow.github.io/docs
-
 template:
-    url: https://github.com/CouscousPHP/Template-Dark
+    directory: .
 
-exclude:
-    - vendor
+github:
+    user: CouscousPHP
+    repo: Template-Dark
 
+title: Couscous template
+subTitle: The dark template for Couscous.
+
+# The left menu bar
 menu:
     sections:
-        -   name: Introduction
+        main:
+            name: Main documentation
             items:
-                what_even_is:
-                    text: What is Evflow?
-                    relativeUrl: introduction/what-even-is.html
-                why:
-                    text: Why?
-                    relativeUrl: introduction/why.html
-                project_goals:
-                    text: Project Goals
-                    relativeUrl: introduction/project-goals.html
-        -   name: Concepts
+                home:
+                    text: Home page
+                    # You can use relative urls
+                    relativeUrl: doc/faq.html
+                foo:
+                    text: Another link
+                    # Or absolute urls
+                    absoluteUrl: https://example.com
+        other:
+            name: Other topics
             items:
-                event_loop:
-                    text: The Event Loop
-                    relativeUrl: concepts/event-loop.html
-                event_devices:
-                    text: Event Devices
-                    relativeUrl: concepts/event-devices.html
-        -   name: Usage
-            items:
-                logging:
-                    text: Logging
-                    relativeUrl: usage/logging.html
