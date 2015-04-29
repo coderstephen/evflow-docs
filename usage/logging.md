@@ -1,3 +1,7 @@
+---
+currentMenu: logging
+---
+
 # Logging
 Asynchronous programming is tough stuff and debugging asynchronous programs can be difficult. To aid debugging, Evflow's event loop has built-in logging capabilities. The `EventLoop` class supports sending logs to any [PSR-3](http://www.php-fig.org/psr/psr-3/)-compliant logger.
 

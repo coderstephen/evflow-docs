@@ -1,3 +1,7 @@
+---
+currentMenu: project_goals
+---
+
 # Project goals
 The purpose of the Evflow project is twofold: to experiment, discover and design a standard method for writing and running asynchronous PHP code, and to provide a solid, capable implementation thereof for general use.
 

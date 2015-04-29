@@ -1,3 +1,7 @@
+---
+currentMenu: why
+---
+
 # Why?
 Since the last few releases of PHP, all the elements for creating an asynchronous environment are there -- all that is needed is an event loop system and away we go. Evflow's goal is to not only define an interface for implementing asynchronous functionality, but to provide a robust implementation as well.
 

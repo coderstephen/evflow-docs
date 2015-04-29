@@ -1,3 +1,7 @@
+---
+currentMenu: event_loop
+---
+
 # Overview
 The *event loop* is the core of Evflow and of any asynchronous application. Its the event loop's responsibility to control the execution flow of the application and keep track of event callbacks that need to be invoked.
 
