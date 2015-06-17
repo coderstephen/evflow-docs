@@ -1,5 +1,6 @@
-# ignore dependencies
+# ignore dependencies and lock file
 vendor/
+composer.lock
 
 # ignore generated couscous files
 .couscous/
