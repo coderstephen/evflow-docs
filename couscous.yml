@@ -5,6 +5,10 @@ baseUrl: http://evflow.github.io/docs
 template:
     url: https://github.com/CouscousPHP/Template-Dark
 
+github:
+    user: evflow
+    repo: docs
+
 exclude:
     - vendor
 
