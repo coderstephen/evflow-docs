@@ -22,6 +22,9 @@
                 </small>
             </a>
 
+                            <a href="https://github.com/evflow/docs">
+                    <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png">
+                </a>
             
         </header>
 
@@ -84,11 +87,11 @@
 
                 
                 <section class="col-sm-offset-3 col-lg-offset-2 col-sm-9 col-lg-10">
-                    <h1>Project goals</h1>
+                    <h1 id="project-goals">Project goals</h1>
 <p>The purpose of the Evflow project is twofold: to experiment, discover and design a standard method for writing and running asynchronous PHP code, and to provide a solid, capable implementation thereof for general use.</p>
-<h1>The design</h1>
+<h1 id="the-design">The design</h1>
 <p>The design we are developing is fairly unique in the asynchronous world, and not without reason. We think there are some fundamental design considerations that affect the power and extensibility of an asynchronous environment that even popular, low-level libraries miss out on. Not that libraries such as <a href="http://libev.schmorp.de">libev</a> are bad, but in the PHP environment we think that there is a better way.</p>
-<h1>The implementation</h1>
+<h1 id="the-implementation">The implementation</h1>
 <p>Since the design is still a work in progress, you can imagine the implementation is as well. At its current state, the implementation is a long way off from being stable enough for a production-level application, but is still quite powerful and serves as a way to test the design in real code and feed the results back into the design.</p>
 <p>Unlike some libraries, the Evflow implementation is meant to be only an event library; it should do one thing, and one thing well. Relevant features could be added in the future beyond a basic event loop to make it more useful. Some things that should be or are being looked into are:</p>
 <ul>
